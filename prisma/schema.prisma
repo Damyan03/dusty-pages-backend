@@ -13,3 +13,93 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Article {
+  id          Int      @id @default(autoincrement())
+  title       String
+  body        String
+  author      String
+  date        DateTime
+  contentDate DateTime
+  tags        String
+
+  // Relations
+  categories ArticleCategory[]
+  users      UserArticle[]
+  comments   Comments[]
+  views      ArticleView[]
+  eras       ArticleEra[]
+}
+
+model Category {
+  id       Int               @id @default(autoincrement())
+  name     String
+  articles ArticleCategory[]
+}
+
+model ArticleCategory {
+  articleId  Int
+  categoryId Int
+
+  article  Article  @relation(fields: [articleId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+
+  @@id([articleId, categoryId])
+}
+
+model User {
+  id          Int    @id @default(autoincrement())
+  username    String
+  displayName String
+
+  articles UserArticle[]
+  comments Comments[]
+  views    ArticleView[]
+}
+
+model UserArticle {
+  articleId Int
+  userId    Int
+
+  article Article @relation(fields: [articleId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@id([articleId, userId])
+}
+
+model Comments {
+  id        Int    @id @default(autoincrement())
+  articleId Int
+  userId    Int
+  body      String
+
+  article Article @relation(fields: [articleId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+}
+
+model ArticleView {
+  articleId Int
+  userId    Int
+  viewedAt  DateTime
+
+  article Article @relation(fields: [articleId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@id([articleId, userId, viewedAt])
+}
+
+model Era {
+  id       Int          @id @default(autoincrement())
+  name     String
+  articles ArticleEra[]
+}
+
+model ArticleEra {
+  articleId Int
+  eraId     Int
+
+  article Article @relation(fields: [articleId], references: [id])
+  era     Era     @relation(fields: [eraId], references: [id])
+
+  @@id([articleId, eraId])
+}

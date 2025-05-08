@@ -120,9 +120,81 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.ArticleScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  body: 'body',
+  author: 'author',
+  date: 'date',
+  contentDate: 'contentDate',
+  tags: 'tags'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.ArticleCategoryScalarFieldEnum = {
+  articleId: 'articleId',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  displayName: 'displayName'
+};
+
+exports.Prisma.UserArticleScalarFieldEnum = {
+  articleId: 'articleId',
+  userId: 'userId'
+};
+
+exports.Prisma.CommentsScalarFieldEnum = {
+  id: 'id',
+  articleId: 'articleId',
+  userId: 'userId',
+  body: 'body'
+};
+
+exports.Prisma.ArticleViewScalarFieldEnum = {
+  articleId: 'articleId',
+  userId: 'userId',
+  viewedAt: 'viewedAt'
+};
+
+exports.Prisma.EraScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.ArticleEraScalarFieldEnum = {
+  articleId: 'articleId',
+  eraId: 'eraId'
+};
+
+exports.Prisma.SortOrder = {
+  asc: 'asc',
+  desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 
 exports.Prisma.ModelName = {
-
+  Article: 'Article',
+  Category: 'Category',
+  ArticleCategory: 'ArticleCategory',
+  User: 'User',
+  UserArticle: 'UserArticle',
+  Comments: 'Comments',
+  ArticleView: 'ArticleView',
+  Era: 'Era',
+  ArticleEra: 'ArticleEra'
 };
 
 /**
