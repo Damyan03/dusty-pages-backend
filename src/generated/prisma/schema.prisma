@@ -21,7 +21,7 @@ model Article {
   author      String
   date        DateTime
   contentDate DateTime
-  tags        String
+  tags        Json?
 
   // Relations
   categories ArticleCategory[]

@@ -1801,7 +1801,6 @@ export namespace Prisma {
     author: string | null
     date: Date | null
     contentDate: Date | null
-    tags: string | null
   }
 
   export type ArticleMaxAggregateOutputType = {
@@ -1811,7 +1810,6 @@ export namespace Prisma {
     author: string | null
     date: Date | null
     contentDate: Date | null
-    tags: string | null
   }
 
   export type ArticleCountAggregateOutputType = {
@@ -1841,7 +1839,6 @@ export namespace Prisma {
     author?: true
     date?: true
     contentDate?: true
-    tags?: true
   }
 
   export type ArticleMaxAggregateInputType = {
@@ -1851,7 +1848,6 @@ export namespace Prisma {
     author?: true
     date?: true
     contentDate?: true
-    tags?: true
   }
 
   export type ArticleCountAggregateInputType = {
@@ -1958,7 +1954,7 @@ export namespace Prisma {
     author: string
     date: Date
     contentDate: Date
-    tags: string
+    tags: JsonValue | null
     _count: ArticleCountAggregateOutputType | null
     _avg: ArticleAvgAggregateOutputType | null
     _sum: ArticleSumAggregateOutputType | null
@@ -2054,7 +2050,7 @@ export namespace Prisma {
       author: string
       date: Date
       contentDate: Date
-      tags: string
+      tags: Prisma.JsonValue | null
     }, ExtArgs["result"]["article"]>
     composites: {}
   }
@@ -2489,7 +2485,7 @@ export namespace Prisma {
     readonly author: FieldRef<"Article", 'String'>
     readonly date: FieldRef<"Article", 'DateTime'>
     readonly contentDate: FieldRef<"Article", 'DateTime'>
-    readonly tags: FieldRef<"Article", 'String'>
+    readonly tags: FieldRef<"Article", 'Json'>
   }
     
 
@@ -11751,12 +11747,37 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -11807,6 +11828,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -11833,7 +11868,7 @@ export namespace Prisma {
     author?: StringFilter<"Article"> | string
     date?: DateTimeFilter<"Article"> | Date | string
     contentDate?: DateTimeFilter<"Article"> | Date | string
-    tags?: StringFilter<"Article"> | string
+    tags?: JsonNullableFilter<"Article">
     categories?: ArticleCategoryListRelationFilter
     users?: UserArticleListRelationFilter
     comments?: CommentsListRelationFilter
@@ -11848,7 +11883,7 @@ export namespace Prisma {
     author?: SortOrder
     date?: SortOrder
     contentDate?: SortOrder
-    tags?: SortOrder
+    tags?: SortOrderInput | SortOrder
     categories?: ArticleCategoryOrderByRelationAggregateInput
     users?: UserArticleOrderByRelationAggregateInput
     comments?: CommentsOrderByRelationAggregateInput
@@ -11866,7 +11901,7 @@ export namespace Prisma {
     author?: StringFilter<"Article"> | string
     date?: DateTimeFilter<"Article"> | Date | string
     contentDate?: DateTimeFilter<"Article"> | Date | string
-    tags?: StringFilter<"Article"> | string
+    tags?: JsonNullableFilter<"Article">
     categories?: ArticleCategoryListRelationFilter
     users?: UserArticleListRelationFilter
     comments?: CommentsListRelationFilter
@@ -11881,7 +11916,7 @@ export namespace Prisma {
     author?: SortOrder
     date?: SortOrder
     contentDate?: SortOrder
-    tags?: SortOrder
+    tags?: SortOrderInput | SortOrder
     _count?: ArticleCountOrderByAggregateInput
     _avg?: ArticleAvgOrderByAggregateInput
     _max?: ArticleMaxOrderByAggregateInput
@@ -11899,7 +11934,7 @@ export namespace Prisma {
     author?: StringWithAggregatesFilter<"Article"> | string
     date?: DateTimeWithAggregatesFilter<"Article"> | Date | string
     contentDate?: DateTimeWithAggregatesFilter<"Article"> | Date | string
-    tags?: StringWithAggregatesFilter<"Article"> | string
+    tags?: JsonNullableWithAggregatesFilter<"Article">
   }
 
   export type CategoryWhereInput = {
@@ -12289,7 +12324,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryCreateNestedManyWithoutArticleInput
     users?: UserArticleCreateNestedManyWithoutArticleInput
     comments?: CommentsCreateNestedManyWithoutArticleInput
@@ -12304,7 +12339,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedCreateNestedManyWithoutArticleInput
     users?: UserArticleUncheckedCreateNestedManyWithoutArticleInput
     comments?: CommentsUncheckedCreateNestedManyWithoutArticleInput
@@ -12318,7 +12353,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUpdateManyWithoutArticleNestedInput
     users?: UserArticleUpdateManyWithoutArticleNestedInput
     comments?: CommentsUpdateManyWithoutArticleNestedInput
@@ -12333,7 +12368,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedUpdateManyWithoutArticleNestedInput
     users?: UserArticleUncheckedUpdateManyWithoutArticleNestedInput
     comments?: CommentsUncheckedUpdateManyWithoutArticleNestedInput
@@ -12348,7 +12383,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type ArticleUpdateManyMutationInput = {
@@ -12357,7 +12392,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type ArticleUncheckedUpdateManyInput = {
@@ -12367,7 +12402,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type CategoryCreateInput = {
@@ -12715,6 +12750,29 @@ export namespace Prisma {
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type ArticleCategoryListRelationFilter = {
     every?: ArticleCategoryWhereInput
@@ -12744,6 +12802,11 @@ export namespace Prisma {
     every?: ArticleEraWhereInput
     some?: ArticleEraWhereInput
     none?: ArticleEraWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type ArticleCategoryOrderByRelationAggregateInput = {
@@ -12787,7 +12850,6 @@ export namespace Prisma {
     author?: SortOrder
     date?: SortOrder
     contentDate?: SortOrder
-    tags?: SortOrder
   }
 
   export type ArticleMinOrderByAggregateInput = {
@@ -12797,7 +12859,6 @@ export namespace Prisma {
     author?: SortOrder
     date?: SortOrder
     contentDate?: SortOrder
-    tags?: SortOrder
   }
 
   export type ArticleSumOrderByAggregateInput = {
@@ -12850,6 +12911,32 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type CategoryCountOrderByAggregateInput = {
@@ -13771,6 +13858,40 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
   export type ArticleCategoryCreateWithoutArticleInput = {
     category: CategoryCreateNestedOneWithoutArticlesInput
   }
@@ -14029,7 +14150,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     users?: UserArticleCreateNestedManyWithoutArticleInput
     comments?: CommentsCreateNestedManyWithoutArticleInput
     views?: ArticleViewCreateNestedManyWithoutArticleInput
@@ -14043,7 +14164,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     users?: UserArticleUncheckedCreateNestedManyWithoutArticleInput
     comments?: CommentsUncheckedCreateNestedManyWithoutArticleInput
     views?: ArticleViewUncheckedCreateNestedManyWithoutArticleInput
@@ -14086,7 +14207,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     users?: UserArticleUpdateManyWithoutArticleNestedInput
     comments?: CommentsUpdateManyWithoutArticleNestedInput
     views?: ArticleViewUpdateManyWithoutArticleNestedInput
@@ -14100,7 +14221,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     users?: UserArticleUncheckedUpdateManyWithoutArticleNestedInput
     comments?: CommentsUncheckedUpdateManyWithoutArticleNestedInput
     views?: ArticleViewUncheckedUpdateManyWithoutArticleNestedInput
@@ -14240,7 +14361,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryCreateNestedManyWithoutArticleInput
     comments?: CommentsCreateNestedManyWithoutArticleInput
     views?: ArticleViewCreateNestedManyWithoutArticleInput
@@ -14254,7 +14375,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedCreateNestedManyWithoutArticleInput
     comments?: CommentsUncheckedCreateNestedManyWithoutArticleInput
     views?: ArticleViewUncheckedCreateNestedManyWithoutArticleInput
@@ -14303,7 +14424,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUpdateManyWithoutArticleNestedInput
     comments?: CommentsUpdateManyWithoutArticleNestedInput
     views?: ArticleViewUpdateManyWithoutArticleNestedInput
@@ -14317,7 +14438,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedUpdateManyWithoutArticleNestedInput
     comments?: CommentsUncheckedUpdateManyWithoutArticleNestedInput
     views?: ArticleViewUncheckedUpdateManyWithoutArticleNestedInput
@@ -14356,7 +14477,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryCreateNestedManyWithoutArticleInput
     users?: UserArticleCreateNestedManyWithoutArticleInput
     views?: ArticleViewCreateNestedManyWithoutArticleInput
@@ -14370,7 +14491,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedCreateNestedManyWithoutArticleInput
     users?: UserArticleUncheckedCreateNestedManyWithoutArticleInput
     views?: ArticleViewUncheckedCreateNestedManyWithoutArticleInput
@@ -14419,7 +14540,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUpdateManyWithoutArticleNestedInput
     users?: UserArticleUpdateManyWithoutArticleNestedInput
     views?: ArticleViewUpdateManyWithoutArticleNestedInput
@@ -14433,7 +14554,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedUpdateManyWithoutArticleNestedInput
     users?: UserArticleUncheckedUpdateManyWithoutArticleNestedInput
     views?: ArticleViewUncheckedUpdateManyWithoutArticleNestedInput
@@ -14472,7 +14593,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryCreateNestedManyWithoutArticleInput
     users?: UserArticleCreateNestedManyWithoutArticleInput
     comments?: CommentsCreateNestedManyWithoutArticleInput
@@ -14486,7 +14607,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedCreateNestedManyWithoutArticleInput
     users?: UserArticleUncheckedCreateNestedManyWithoutArticleInput
     comments?: CommentsUncheckedCreateNestedManyWithoutArticleInput
@@ -14535,7 +14656,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUpdateManyWithoutArticleNestedInput
     users?: UserArticleUpdateManyWithoutArticleNestedInput
     comments?: CommentsUpdateManyWithoutArticleNestedInput
@@ -14549,7 +14670,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedUpdateManyWithoutArticleNestedInput
     users?: UserArticleUncheckedUpdateManyWithoutArticleNestedInput
     comments?: CommentsUncheckedUpdateManyWithoutArticleNestedInput
@@ -14622,7 +14743,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryCreateNestedManyWithoutArticleInput
     users?: UserArticleCreateNestedManyWithoutArticleInput
     comments?: CommentsCreateNestedManyWithoutArticleInput
@@ -14636,7 +14757,7 @@ export namespace Prisma {
     author: string
     date: Date | string
     contentDate: Date | string
-    tags: string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedCreateNestedManyWithoutArticleInput
     users?: UserArticleUncheckedCreateNestedManyWithoutArticleInput
     comments?: CommentsUncheckedCreateNestedManyWithoutArticleInput
@@ -14679,7 +14800,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUpdateManyWithoutArticleNestedInput
     users?: UserArticleUpdateManyWithoutArticleNestedInput
     comments?: CommentsUpdateManyWithoutArticleNestedInput
@@ -14693,7 +14814,7 @@ export namespace Prisma {
     author?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     contentDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    tags?: StringFieldUpdateOperationsInput | string
+    tags?: NullableJsonNullValueInput | InputJsonValue
     categories?: ArticleCategoryUncheckedUpdateManyWithoutArticleNestedInput
     users?: UserArticleUncheckedUpdateManyWithoutArticleNestedInput
     comments?: CommentsUncheckedUpdateManyWithoutArticleNestedInput

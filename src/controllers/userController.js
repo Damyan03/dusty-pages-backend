@@ -1,16 +1,5 @@
-const getUsers = (req, res) => {
-	// Test data
-	const users = [
-		{ id: 1, name: 'Alice' },
-		{ id: 2, name: 'Bob' },
-	];
+import { PrismaClient } from '../generated/prisma/client.js';
 
-	res.json(users);
-};
+const prisma = new PrismaClient();
 
-const createUser = (req, res) => {
-	const { name } = req.body;
-	res.status(201).json({ message: `User ${name} created!` });
-};
-
-export default { getUsers, createUser };
+export default {};
