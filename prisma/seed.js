@@ -33,6 +33,10 @@ async function main() {
 				data: {
 					username: faker.internet.username(),
 					displayName: faker.person.fullName(),
+					email: faker.internet.email(),
+					password: faker.internet.password(),
+					provider: faker.helpers.arrayElement(['local', 'google', 'facebook']),
+					providerUserId: faker.string.uuid()
 				}
 			})
 		)

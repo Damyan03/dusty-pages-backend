@@ -52,6 +52,11 @@ model User {
   username    String
   displayName String
 
+  email       String @unique
+  password    String
+  provider       String?
+  providerUserId String?
+
   articles UserArticle[]
   comments Comments[]
   views    ArticleView[]
