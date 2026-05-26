@@ -88,4 +88,14 @@ const getFeaturedArticles = async (req, res) => {
 	}
 };
 
-export default { getArticleById, getFeaturedArticles };
+const getAllArticles = async (req, res) => {
+	try {
+		const allArticles = await prisma.article.findMany();
+		res.json(allArticles);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: 'Error fetching all articles' });
+	}
+};
+
+export default { getArticleById, getFeaturedArticles, getAllArticles };
