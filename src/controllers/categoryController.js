@@ -1,7 +1,5 @@
-import { PrismaClient } from '../generated/prisma/client.js';
+import { prisma } from '../lib/prisma.js';
 import { subDays, subMonths, subYears } from 'date-fns';
-
-const prisma = new PrismaClient();
 
 const getCategories = async (req, res) => {
 	try {
@@ -40,7 +38,9 @@ const getTopArticlesPerCategory = async (req, res) => {
 		}
 
 		const category = await prisma.category.findUnique({ where: { name: categoryName } });
-		if (!category) { return res.status(404).json({ error: 'Category not found' }); }
+		if (!category) {
+			return res.status(404).json({ error: 'Category not found' });
+		}
 
 		const whereCondition = {
 			...(dateThreshold && { viewedAt: { gte: dateThreshold } }),
@@ -65,7 +65,7 @@ const getTopArticlesPerCategory = async (req, res) => {
 			take: 5,
 		});
 
-		const articleIds = topViewed.map(v => v.articleId);
+		const articleIds = topViewed.map((v) => v.articleId);
 
 		const articles = await prisma.article.findMany({
 			where: {
@@ -78,7 +78,7 @@ const getTopArticlesPerCategory = async (req, res) => {
 			},
 		});
 
-		const sortedArticles = articleIds.map(id => articles.find(a => a.id === id));
+		const sortedArticles = articleIds.map((id) => articles.find((a) => a.id === id));
 
 		res.json(sortedArticles);
 	} catch (error) {

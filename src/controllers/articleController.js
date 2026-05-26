@@ -1,7 +1,5 @@
-import { PrismaClient } from '../generated/prisma/client.js';
+import { prisma } from '../lib/prisma.js';
 import { startOfWeek, endOfWeek } from 'date-fns';
-
-const prisma = new PrismaClient();
 
 const getArticleById = async (req, res) => {
 	try {
@@ -42,7 +40,7 @@ const getFeaturedArticles = async (req, res) => {
 			take: 3,
 		});
 
-		let articleIds = topThisWeek.map(v => v.articleId);
+		let articleIds = topThisWeek.map((v) => v.articleId);
 
 		// If less than 3, add from top of all-time articles
 		if (articleIds.length < 3) {
@@ -81,7 +79,7 @@ const getFeaturedArticles = async (req, res) => {
 		});
 
 		// Sort articles in the same order as articleIds
-		const sortedArticles = articleIds.map(id => articles.find(a => a.id === id));
+		const sortedArticles = articleIds.map((id) => articles.find((a) => a.id === id));
 
 		res.json(sortedArticles);
 	} catch (error) {

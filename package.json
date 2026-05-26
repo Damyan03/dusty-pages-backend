@@ -1,28 +1,30 @@
 {
-  "name": "dustypages-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "@faker-js/faker": "^9.7.0",
-    "@prisma/client": "^6.7.0",
-    "cors": "^2.8.5",
-    "date-fns": "^4.1.0",
-    "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "ts-node": "^10.9.2"
-  },
-  "devDependencies": {
-    "prisma": "^6.13.0"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
-  }
+	"name": "dustypages-backend",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"format": "prettier . --write",
+		"format:check": "prettier . --check"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"@faker-js/faker": "^9.7.0",
+		"@prisma/adapter-pg": "^7.8.0",
+		"@prisma/client": "^7.8.0",
+		"cors": "^2.8.5",
+		"date-fns": "^4.1.0",
+		"dotenv": "^16.5.0",
+		"express": "^5.1.0",
+		"pg": "^8.21.0",
+		"ts-node": "^10.9.2"
+	},
+	"devDependencies": {
+		"prettier": "^3.6.2",
+		"prisma": "^7.8.0"
+	}
 }
